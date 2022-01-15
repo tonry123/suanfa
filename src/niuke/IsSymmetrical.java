@@ -127,6 +127,33 @@ public class IsSymmetrical {
         return treeNode_x;
     }
 
+    //三次编写
+    public boolean isduicheng(TreeNode p1, TreeNode p2){
+        TreeNode p3 = grtMir(p1);
+        return eq(p2,p3);
+    }
+    public boolean eq(TreeNode p1, TreeNode p2){
+        if(p1.left != null && p2.left == null){
+            return false;
+        }
+        if(p1.right != null && p2.right == null){
+            return false;
+        }
+        if(p1.val == p2.val) {
+            return eq(p1.left, p2.left) && eq(p2.right, p2.right);
+        }
+        return false;
+    }
+    //获取对称树
+    public TreeNode grtMir(TreeNode p){
+        if(p == null){
+            return null;
+        }
+        p.right = grtMir(p.left);
+        p.right = grtMir(p.right);
+        return p;
+    }
+
 
 
 }

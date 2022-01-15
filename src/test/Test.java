@@ -1,5 +1,7 @@
 package test;
 
+import oracle.jrockit.jfr.events.Bits;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,19 +13,19 @@ import java.util.Map;
 public class Test {
     public static void main(String[] args) {
 
-        Test test = new Test();
-        Inc in = test.new Inc();
-        Dec de = test.new Dec();
-        thre s = test.new thre();
-        new Thread(in).start();
-        new Thread(de).start();
-        new Thread(de).start();
-        s.start();
-
-        Map<String, Integer> map = new HashMap<>();
-        for(String ss : map.keySet()){
-            System.out.println(ma);
-        }
+//        Test test = new Test();
+//        Inc in = test.new Inc();
+//        Dec de = test.new Dec();
+//        thre s = test.new thre();
+//        new Thread(in).start();
+//        new Thread(de).start();
+//        new Thread(de).start();
+//        s.start();
+//
+//        Map<String, Integer> map = new HashMap<>();
+//        for(String ss : map.keySet()){
+//            map.get(ss);
+//        }
 
     }
     public int j;

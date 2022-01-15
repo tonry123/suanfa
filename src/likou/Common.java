@@ -1,7 +1,6 @@
 package likou;
 
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @Author: Li Guangwei
@@ -10,7 +9,11 @@ import java.util.Stack;
  * @Version: 1.0
  */
 public class Common {
+    public static void main(String[] args) {
+        Common common = new Common();
+        int[] a= new int[]{0,1,1,0,-2,2};
 
+    }
 
     /**
      * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -93,5 +96,80 @@ public class Common {
 
 
 
-    ///
+    /*
+    给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，
+    使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+     */
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = 0; i < nums.length - 2; i ++){
+            for(int j = i+1; j < nums.length - 1; j++){
+                for(int k = j+1; k <nums.length; k ++){
+                    if(nums[i] + nums[j] + nums[k] == 0){
+                        List<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[k]);
+                        Collections.sort(list);
+                        boolean flag = false;
+                        for(List<Integer> a : result){
+                            if(list.get(0) == a.get(0) && list.get(1) == a.get(1) &&list.get(2) == a.get(2)){
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag) {
+                            result.add(list);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+
+    /**
+     *示例 1:
+
+     输入: candidates = [2,3,6,7], target = 7,
+     所求解集为:
+     [
+     [7],
+     [2,2,3]
+     ]
+     示例 2:
+
+     输入: candidates = [2,3,5], target = 8,
+     所求解集为:
+     [
+     [2,2,2,2],
+     [2,3,3],
+     [3,5]
+     ]
+     * @param nums
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> fourSum2(int[] candidates, int target) {
+        List<Integer> arr = new ArrayList<>();
+        List<List<Integer>> list = new ArrayList<>();
+        findOne(candidates,target,0,list,arr);
+        return list;
+    }
+    public void findOne(int[] nums, int target, int start, List<List<Integer>> list, List<Integer> arr){
+        if(target == 0){
+            list.add(new ArrayList<>(arr));
+            return;
+        }else if (target < 0) {
+            return;
+        }
+        for(int i = start; i < nums.length; i ++){
+            arr.add(nums[i]);
+            findOne(nums, target - nums[i],i + 1,list, arr);
+            arr.remove(arr.size() - 1);
+        }
+    }
+
+
 }
